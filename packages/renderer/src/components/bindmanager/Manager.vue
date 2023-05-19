@@ -124,12 +124,30 @@ async function remove() {
     v-if="activeBind && activeBind.id == 0"
     class="col-span-2"
   >
-    <div class="mt-5 px-4">
-      <h2 class="font-extrabold text-white text-4xl">
-        <span class="block"> Commençons... </span>
-        <span class="block text-indigo-500"> Choisissez une assignation ou créez en une. </span>
-      </h2>
-    </div>
+      <div class="container max-w-2xl mx-auto shadow-md md:w-3/4 mt-5">
+        <div class="p-4 rounded-lg bg-gray-800">
+          <div class="inline-flex items-center space-x-4">
+          <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-blue-900">
+            <span
+              aria-hidden="true"
+              class="absolute inset-0 bg-blue-200 rounded-full opacity-100"
+            >
+            </span>
+            <span class="relative"><font-awesome-icon :icon="['fas', 'circle-info']" /></span>
+          </span>
+            <h1 class="text-white font-medium">Commençons</h1>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg mt-2">
+          <div class="items-center w-full p-4 space-y-4 text-gray-400 md:inline-flex md:space-y-0">
+            <h2 class="font-bold text-white text-xl">
+              <span class="block text-indigo-500"> Choisissez une assignation ou créez en une. </span>
+              <span class="block mt-2 font-normal">Vous pouvez cliquez sur le bouton vert en dessous pour créer votre première assignation.</span>
+            </h2>
+          </div>
+
+        </div>
+      </div>
   </section>
 
   <section
@@ -150,7 +168,7 @@ async function remove() {
           <h1 class="text-white font-medium"> Nouvelle assignation </h1>
         </div>
       </div>
-      <div class="bg-gray-800 rounded-lg mt-1">
+      <div class="bg-gray-800 rounded-lg mt-2">
         <div class="items-center w-full p-4 space-y-4 text-gray-400 md:inline-flex md:space-y-0">
           <h2 class="max-w-sm mx-auto md:w-1/3"> Touche </h2>
           <div
@@ -182,6 +200,7 @@ async function remove() {
           <div class="max-w-sm mx-auto space-y-5 md:w-2/3">
             <div class="relative">
               <vue3SimpleTypehead
+                maxlength="80"
                 class="rounded-lg border-transparent appearance-none w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
                 placeholder="Commencez à écrire..."
                 :items="commandDisplayValue"
@@ -226,7 +245,7 @@ async function remove() {
           </h1>
         </div>
       </div>
-      <div class="bg-gray-800 rounded-lg mt-1">
+      <div class="bg-gray-800 rounded-lg mt-2">
         <div class="items-center w-full p-4 space-y-4 text-gray-400 md:inline-flex md:space-y-0">
           <h2 class="max-w-sm mx-auto md:w-1/3">
             Touche

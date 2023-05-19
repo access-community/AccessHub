@@ -3,7 +3,7 @@ import Table from '/@/components/bindmanager/Table.vue';
 import Manager from '/@/components/bindmanager/Manager.vue';
 import {getBindData, firstVisit} from '#preload';
 import {useBindStore} from '/@/store/bind';
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const alreadyVisited = ref(await firstVisit());
 
@@ -23,9 +23,7 @@ async function setVisited() {
 </script>
 
 <template>
-
   <div>
-
     <template v-if="alreadyVisited">
       <div
         v-if="!data.status"
@@ -63,7 +61,7 @@ async function setVisited() {
             content="Nouveau"
             placement="auto-start"
             :style="{
-            '--popper-theme-padding': '13px',
+              '--popper-theme-padding': '13px',
             }"
           >
             <button
@@ -75,7 +73,6 @@ async function setVisited() {
           </Popper>
         </div>
       </template>
-
     </template>
 
     <template v-else>
@@ -88,28 +85,26 @@ async function setVisited() {
             <span class="block">Bienvenue </span>
 
             <span class="block">
-            dans le <span class="text-indigo-500">gestionnaire d'assignations</span>.
-          </span>
+              dans le <span class="text-indigo-500">gestionnaire d'assignations</span>.
+            </span>
           </h1>
 
           <h1 class="text-2xl font-medium mt-5">
-          <span class="block">
-            Ici, vous pouvez gérez vos assignations personnalisées pour
-            <span class="text-indigo-500">SCP:SL</span>.
-          </span>
+            <span class="block">
+              Ici, vous pouvez gérez vos assignations personnalisées pour
+              <span class="text-indigo-500">SCP:SL</span>.
+            </span>
 
             <span class="=block">
-            Si vous ne connaissez pas cette fonctionnalité, c'est une option du jeu qui permet de
-            créer <span class="text-indigo-500">vos propre raccourcis</span>, pour exécuter
-            <span class="text-indigo-500">les commandes que vous voulez</span>.
-          </span>
+              Si vous ne connaissez pas cette fonctionnalité, c'est une option du jeu qui permet de
+              créer <span class="text-indigo-500">vos propre raccourcis</span>, pour exécuter
+              <span class="text-indigo-500">les commandes que vous voulez</span>.
+            </span>
           </h1>
 
           <div class="mt-12 inline-flex rounded-md shadow">
             <button
-              @click="
-              setVisited()
-            "
+              @click="setVisited()"
               class="py-4 px-6 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
             >
               Commencer
@@ -118,7 +113,5 @@ async function setVisited() {
         </div>
       </div>
     </template>
-
   </div>
-
 </template>

@@ -15,8 +15,7 @@ function isEmpty(obj: object) {
 <template>
   <div class="flex flex-col">
     <div
-      v-if="!isEmpty(data)"
-      class="p-4 bg-gray-800 mt-5 rounded-lg hidden xl:block"
+      class="p-4 bg-gray-800 mt-5 xl:rounded-md rounded-r-md"
     >
       <div class="max-w-sm mx-auto md:w-full md:mx-0">
         <div class="inline-flex items-center space-x-4">
@@ -35,63 +34,56 @@ function isEmpty(obj: object) {
 
     <div
       v-if="isEmpty(data)"
-      class="px-5 py-5 text-sm bg-gray-800 mt-5 xl:rounded-lg rounded-r-lg"
+      class="px-5 py-5 text-sm bg-gray-800 mt-2 xl:rounded-lg rounded-r-lg"
     >
       <p class="text-indigo-500 p-4 font-bold text-lg">Aucune assignation.</p>
     </div>
 
     <div
       v-else
-      class="inline-block min-w-full overflow-y-scroll"
-      style="max-height: 80.5vh"
     >
-      <table class="min-w-full leading-normal">
-        <thead class="sticky top-0 z-10">
-          <tr>
-            <th
-              scope="col"
-              class="px-5 py-3 text-sm font-bold text-left text-white uppercase bg-gray-900"
-            >
-              Touche
-            </th>
-            <th
-              scope="col"
-              class="px-5 py-3 text-sm font-bold text-left text-white uppercase bg-gray-900"
-            >
-              Commande associée
-            </th>
-          </tr>
-        </thead>
+      <div class="sticky top-0 z-10 bg-gray-900 flex items-center text-center text-sm font-bold text-white uppercase">
+        <div class="px-5 py-3 w-1/3">
+          Touche
+        </div>
+        <div class="px-5 py-3 w-2/3">
+          Commande associée
+        </div>
+      </div>
 
-        <tbody>
-          <tr
-            v-for="([key, command], id) in data"
-            :key="id"
-            class="bg-gray-800 hover:bg-gray-700 cursor-pointer duration-75 border-b border-gray-600 last:border-0"
-            @click="setActive(id)"
+      <div
+        style="max-height: 55.8vh"
+        class="overflow-y-scroll pr-1"
+      >
+        <div
+          v-for="([key, command], id) in data"
+          :key="id"
+          :class="{ 'rounded-tr-md xl:rounded-t-md': id == 1 }"
+          class="hover:bg-gray-700 bg-gray-800 cursor-pointer flex items-center xl:last:rounded-b-md duration-75 border-b border-gray-600 last:border-0 last:rounded-br-md"
+          @click="setActive(id)"
+        >
+          <div class="px-5 py-4 text-sm w-1/3">
+          <span
+            class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900"
           >
-            <td class="px-5 py-5 text-sm">
-              <span
-                class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900"
-              >
-                <span
-                  aria-hidden="true"
-                  class="absolute inset-0 bg-green-200 rounded-full opacity-100"
-                >
-                </span>
-                <span class="relative"> {{ humanKey(key) }} </span>
-              </span>
-            </td>
-            <td class="px-5 py-5 text-sm">
-              <p
-                class="bg-blue-200 break-all text-blue-900 p-4 whitespace-pre-wrap rounded font-semibold"
-              >
-                {{ command }}
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <span
+              aria-hidden="true"
+              class="absolute inset-0 bg-green-200 rounded-full opacity-100"
+            ></span>
+            <span class="relative">{{ humanKey(key) }}</span>
+          </span>
+          </div>
+          <div class="px-5 py-2 text-sm w-2/3">
+            <p
+              class="bg-blue-200 break-all text-blue-900 px-3 py-2 whitespace-pre-wrap font-semibold rounded"
+            >
+              {{ command }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </template>

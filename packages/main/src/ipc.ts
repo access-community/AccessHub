@@ -77,19 +77,19 @@ ipcMain.handle('enableInputEvent', async (event, args) => {
 });
 
 ipcMain.handle('getApiData', async (event, args) => {
-  const endpoint = 'https://access-community.fr/api/v1'
+  const endpoint = 'https://access-community.fr/api/v1';
   return new Promise((resolve, reject) => {
     let link = `${endpoint}`;
     switch (args) {
       case 'bind':
         link = `${endpoint}/bind_managers`;
-        break
+        break;
       case 'stats':
         link = `${endpoint}/statistics`;
-        break
+        break;
       case 'servers':
         link = `${endpoint}/servers`;
-        break
+        break;
     }
 
     const request = net.request(link);

@@ -1,5 +1,8 @@
 <template>
-  <div :id="wrapperId" class="simple-typeahead">
+  <div
+    :id="wrapperId"
+    class="simple-typeahead"
+  >
     <input
       ref="inputRef"
       :id="inputId"
@@ -17,29 +20,53 @@
       autocomplete="off"
       v-bind="$attrs"
     />
-    <div v-if="isListVisible" class="simple-typeahead-list">
-      <div class="simple-typeahead-list-header" v-if="$slots['list-header']"><slot name="list-header"></slot></div>
+    <div
+      v-if="isListVisible"
+      class="simple-typeahead-list"
+    >
+      <div
+        class="simple-typeahead-list-header"
+        v-if="$slots['list-header']"
+        ><slot name="list-header"></slot
+      ></div>
       <div
         class="simple-typeahead-list-item"
-        :class="{ 'simple-typeahead-list-item-active': currentSelectionIndex == index }"
+        :class="{'simple-typeahead-list-item-active': currentSelectionIndex == index}"
         v-for="(item, index) in filteredItems"
         :key="index"
         @mousedown.prevent
         @click="selectItem(item)"
         @mouseenter="currentSelectionIndex = index"
       >
-				<span class="simple-typeahead-list-item-text" :data-text="itemProjection(item)" v-if="$slots['list-item-text']"
-        ><slot name="list-item-text" :item="item" :itemProjection="itemProjection" :boldMatchText="boldMatchText"></slot
+        <span
+          class="simple-typeahead-list-item-text"
+          :data-text="itemProjection(item)"
+          v-if="$slots['list-item-text']"
+          ><slot
+            name="list-item-text"
+            :item="item"
+            :itemProjection="itemProjection"
+            :boldMatchText="boldMatchText"
+          ></slot
         ></span>
-        <span class="simple-typeahead-list-item-text" :data-text="itemProjection(item)" v-html="boldMatchText(itemProjection(item))" v-else></span>
+        <span
+          class="simple-typeahead-list-item-text"
+          :data-text="itemProjection(item)"
+          v-html="boldMatchText(itemProjection(item))"
+          v-else
+        ></span>
       </div>
-      <div class="simple-typeahead-list-footer" v-if="$slots['list-footer']"><slot name="list-footer"></slot></div>
+      <div
+        class="simple-typeahead-list-footer"
+        v-if="$slots['list-footer']"
+        ><slot name="list-footer"></slot
+      ></div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 /*
 https://github.com/frikinside/vue3-simple-typeahead
 Hot fix with default input
@@ -72,21 +99,21 @@ export default /*#__PURE__*/ defineComponent({
     minInputLength: {
       type: Number,
       default: 2,
-      validator: (prop) => {
+      validator: prop => {
         return prop >= 0;
       },
     },
     minItemLength: {
       type: Number,
       default: 0,
-      validator: (prop) => {
+      validator: prop => {
         return prop >= 0;
       },
     },
     selectOnTab: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   data() {
     return {
@@ -94,7 +121,7 @@ export default /*#__PURE__*/ defineComponent({
       input: '',
       isInputFocused: false,
       currentSelectionIndex: 0,
-      updateCalled: false
+      updateCalled: false,
     };
   },
   mounted() {
@@ -107,15 +134,15 @@ export default /*#__PURE__*/ defineComponent({
       if (this.isListVisible && this.currentSelectionIndex >= this.filteredItems.length) {
         this.currentSelectionIndex = (this.filteredItems.length || 1) - 1;
       }
-      this.$emit('onInput', { input: this.input, items: this.filteredItems });
+      this.$emit('onInput', {input: this.input, items: this.filteredItems});
     },
     onFocus() {
       this.isInputFocused = true;
-      this.$emit('onFocus', { input: this.input, items: this.filteredItems });
+      this.$emit('onFocus', {input: this.input, items: this.filteredItems});
     },
     onBlur() {
       this.isInputFocused = false;
-      this.$emit('onBlur', { input: this.input, items: this.filteredItems });
+      this.$emit('onBlur', {input: this.input, items: this.filteredItems});
     },
     onArrowDown($event) {
       if (this.isListVisible && this.currentSelectionIndex < this.filteredItems.length - 1) {
@@ -132,9 +159,17 @@ export default /*#__PURE__*/ defineComponent({
     scrollSelectionIntoView() {
       setTimeout(() => {
         const list_node = document.querySelector(`#${this.wrapperId} .simple-typeahead-list`);
-        const active_node = document.querySelector(`#${this.wrapperId} .simple-typeahead-list-item.simple-typeahead-list-item-active`);
+        const active_node = document.querySelector(
+          `#${this.wrapperId} .simple-typeahead-list-item.simple-typeahead-list-item-active`,
+        );
 
-        if (!(active_node.offsetTop >= list_node.scrollTop && active_node.offsetTop + active_node.offsetHeight < list_node.scrollTop + list_node.offsetHeight)) {
+        if (
+          !(
+            active_node.offsetTop >= list_node.scrollTop &&
+            active_node.offsetTop + active_node.offsetHeight <
+              list_node.scrollTop + list_node.offsetHeight
+          )
+        ) {
           let scroll_to = 0;
           if (active_node.offsetTop > list_node.scrollTop) {
             scroll_to = active_node.offsetTop + active_node.offsetHeight - list_node.offsetHeight;
@@ -194,13 +229,19 @@ export default /*#__PURE__*/ defineComponent({
     filteredItems() {
       const regexp = new RegExp(this.escapeRegExp(this.input), 'i');
 
-      return this.items.filter((item) => this.itemProjection(item).match(regexp));
+      return this.items.filter(item => this.itemProjection(item).match(regexp));
     },
     isListVisible() {
-      return this.isInputFocused && this.input.length >= this.minInputLength && this.filteredItems.length > this.minItemLength;
+      return (
+        this.isInputFocused &&
+        this.input.length >= this.minInputLength &&
+        this.filteredItems.length > this.minItemLength
+      );
     },
     currentSelection() {
-      return this.isListVisible && this.currentSelectionIndex < this.filteredItems.length ? this.filteredItems[this.currentSelectionIndex] : undefined;
+      return this.isListVisible && this.currentSelectionIndex < this.filteredItems.length
+        ? this.filteredItems[this.currentSelectionIndex]
+        : undefined;
     },
   },
 });
@@ -249,7 +290,9 @@ export default /*#__PURE__*/ defineComponent({
   border-bottom: none;
 }
 
-.simple-typeahead .simple-typeahead-list .simple-typeahead-list-item.simple-typeahead-list-item-active {
+.simple-typeahead
+  .simple-typeahead-list
+  .simple-typeahead-list-item.simple-typeahead-list-item-active {
   background-color: #e1e1e1;
 }
 </style>

@@ -3,11 +3,7 @@
  */
 
 export {WindowController} from './controller/WindowController';
-export {
-  writeApiData,
-  getServers,
-  isOnline
-} from './controller/ApiController'
+export {writeApiData, getServers, isOnline} from './controller/ApiController';
 
 export {
   humanKey,
@@ -20,6 +16,4 @@ export {
   firstVisit,
 } from './controller/BindManagerController';
 
-export {
-  getStatistics
-} from './controller/ServersController'
+export {getStatistics} from './controller/ServersController';

@@ -26,7 +26,8 @@ import {
   faUser,
   faDoorOpen,
   faGamepad,
-  faClock
+  faClock,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import {faWindowMaximize, faKeyboard} from '@fortawesome/free-regular-svg-icons';
 import {isOnline} from '#preload';
@@ -45,7 +46,8 @@ library.add(
   faUser,
   faDoorOpen,
   faGamepad,
-  faClock
+  faClock,
+  faStar,
 );
 
 const pinia = createPinia();
@@ -59,7 +61,7 @@ createApp(App)
   .component('Popper', Popper)
   .mount('#app');
 
-if (!await isOnline()) {
+if (!(await isOnline())) {
   notify({
     title: "Vous n'êtes pas connecté à internet",
     type: 'notif-warn',

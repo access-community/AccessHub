@@ -64,7 +64,6 @@ export async function getBindData(path?: string): Promise<Result> {
 
     const lines = data.split('\n').filter(line => line.trim() !== '');
     const result = lines.reduce((acc, line) => {
-
       const separatorIndex = line.indexOf(':');
       const key = line.slice(0, separatorIndex);
       const value = line.slice(separatorIndex + 1);
@@ -118,7 +117,6 @@ export async function addBind(
   command: string,
   update = false,
 ): Promise<{status: boolean; message: string}> {
-
   const content = await tryReadFile();
   const lines = content.split('\n').filter(line => line.trim());
   const newEntry = `${key}:${command}`;
@@ -130,10 +128,8 @@ export async function addBind(
   const entryExists = lines.includes(newEntry);
 
   if (entryExists) {
-    if (update)
-      return {status: true, message: 'Assignation mise à jour'};
-    else
-      return {status: false, message: 'Assignation déjà présente'};
+    if (update) return {status: true, message: 'Assignation mise à jour'};
+    else return {status: false, message: 'Assignation déjà présente'};
   }
 
   const index = lines.findIndex(line => line.startsWith(`${key}:`));
@@ -155,7 +151,6 @@ export async function deleteBind(
   key: string,
   command: string,
 ): Promise<{status: boolean; message: string}> {
-
   const content = await tryReadFile();
   const lines = content.split('\n');
   const targetLine = `${key}:${command}`;
@@ -190,8 +185,7 @@ export async function firstVisit(set: boolean = false) {
   }
   try {
     return !!(await ipcRenderer.invoke('getSettingValue', 'bind_visited'));
-  }
-  catch {
+  } catch {
     return false;
   }
 }

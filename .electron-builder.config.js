@@ -29,7 +29,7 @@ module.exports = async function () {
 
     win: {
       target: 'portable',
-      icon: 'buildResources/icon.png'
-    }
+      icon: 'buildResources/icon.png',
+    },
   };
 };
