@@ -9,6 +9,8 @@
 Access HUB est une application pour Windows développé avec Electron, Vite et Vue.
 Elle vous permet de gérer en ensemble d'options sur le jeu SCP:SL et bénéficie des intégrations d'Access Community.
 
+Consultez le teaser pour l'application [ici](https://youtu.be/EwQ615FImQU).
+
 ## Fonctionnalités
 
 ### Gestionnaire d'assignations
