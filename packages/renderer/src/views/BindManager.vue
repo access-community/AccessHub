@@ -49,7 +49,7 @@ async function setVisited() {
       </div>
 
       <template v-else>
-        <div class="grid gap-2 grid-cols-3 mx-auto max-w-7xl">
+        <div class="grid gap-2 grid-cols-12 mx-auto max-w-7xl">
           <Table />
           <Manager />
         </div>

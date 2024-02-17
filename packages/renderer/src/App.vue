@@ -12,12 +12,11 @@ writeApiData();
   <Header />
 
   <div class="content bg-gray-900">
-    <RouterView v-slot="{Component, route}">
+    <RouterView v-slot="{Component}">
       <template v-if="Component">
         <Transition
-          name="fade"
           mode="out-in"
-          :key="route.path"
+          name="fade"
         >
           <KeepAlive>
             <Suspense timeout="0">
@@ -73,7 +72,7 @@ writeApiData();
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.1s ease;
 }
 
 .fade-enter-from,

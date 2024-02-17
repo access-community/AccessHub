@@ -14,7 +14,7 @@ function numberToHuman(value: number): string {
   return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
-function secondsToHuman(value) {
+function secondsToHuman(value: number) {
   const years = Math.floor(value / (86400 * 365.2425));
   const months = Math.floor((value % (86400 * 365.2425)) / (86400 * 30.436875));
   const days = Math.floor(((value % (86400 * 365.2425)) % (86400 * 30.436875)) / 86400);
@@ -24,6 +24,8 @@ function secondsToHuman(value) {
 
 async function updateServers() {
   const button = document.querySelector('.rotate-button');
+  if (!button) return;
+
   button.classList.add('animate-spin');
 
   servers.value = await getServers();

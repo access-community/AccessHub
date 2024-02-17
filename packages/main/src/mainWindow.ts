@@ -8,7 +8,7 @@ async function createWindow() {
   const browserWindow = new BrowserWindow({
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
     minHeight: 600,
-    minWidth: 800,
+    minWidth: 980,
     title: 'Access Hub',
     frame: false,
     icon: icon,
@@ -79,9 +79,7 @@ export async function restoreOrCreateWindow() {
 }
 
 export async function createTray() {
-  let tray;
-
-  tray = new Tray(icon);
+  const tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([
     {icon: icon.resize({width: 15}), label: 'Access Hub', enabled: false},
     {type: 'separator'},

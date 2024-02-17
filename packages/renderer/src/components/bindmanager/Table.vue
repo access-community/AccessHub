@@ -13,7 +13,7 @@ function isEmpty(obj: object) {
 }
 </script>
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col col-span-5">
     <div
       class="p-4 bg-gray-800 mt-5 xl:rounded-md rounded-r-md"
     >
@@ -43,10 +43,10 @@ function isEmpty(obj: object) {
       v-else
     >
       <div class="sticky top-0 z-10 bg-gray-900 flex items-center text-center text-sm font-bold text-white uppercase">
-        <div class="px-5 py-3 w-1/3">
+        <div class="px-5 py-3 w-5/12">
           Touche
         </div>
-        <div class="px-5 py-3 w-2/3">
+        <div class="px-5 py-3 w-7/12">
           Commande associée
         </div>
       </div>
@@ -62,7 +62,7 @@ function isEmpty(obj: object) {
           class="hover:bg-gray-700 bg-gray-800 cursor-pointer flex items-center xl:last:rounded-b-md duration-75 border-b border-gray-600 last:border-0 last:rounded-br-md"
           @click="setActive(id)"
         >
-          <div class="px-5 py-4 text-sm w-1/3">
+          <div class="px-5 py-4 text-sm w-5/12">
           <span
             class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900"
           >
@@ -73,7 +73,7 @@ function isEmpty(obj: object) {
             <span class="relative">{{ humanKey(key) }}</span>
           </span>
           </div>
-          <div class="px-5 py-2 text-sm w-2/3">
+          <div class="px-5 py-2 text-sm w-7/12">
             <p
               class="bg-blue-200 break-all text-blue-900 px-3 py-2 whitespace-pre-wrap font-semibold rounded"
             >

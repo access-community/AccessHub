@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {VueFinalModal} from 'vue-final-modal';
-import {defineProps} from 'vue';
 import Keyboard from '/@/components/commons/modals/Keyboard.vue';
 
 defineProps<{
@@ -26,6 +25,7 @@ defineProps<{
         En attente...
         <Keyboard />
       </span>
+
       <span v-else-if="inputKey === undefined">
         La touche n'est pas valide. Recommencez.
         <Keyboard />
@@ -37,10 +37,6 @@ defineProps<{
           :icon="['fas', 'circle-stop']"
           class="text-red-400 animate-pulse"
         />
-      </span>
-      <span v-else-if="inputKey === undefined">
-        La touche n'est pas valide. Recommencez.
-        <Keyboard />
       </span>
 
       <span v-else>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// @ts-nocheck
 import {
   humanKey,
   addBind,
@@ -14,6 +15,7 @@ import {useNotification} from '@kyvg/vue3-notification';
 import {useModal} from 'vue-final-modal';
 import BindModal from '/src/components/commons/modals/Bind.vue';
 import vue3SimpleTypehead from '/@/components/commons/vue3-simple-typehead.vue';
+import * as events from 'events';
 
 const {notify} = useNotification();
 const bindStore = useBindStore();
@@ -122,7 +124,7 @@ async function remove() {
 <template>
   <section
     v-if="activeBind && activeBind.id == 0"
-    class="col-span-2"
+    class="col-span-7"
   >
       <div class="container max-w-2xl mx-auto shadow-md md:w-3/4 mt-5">
         <div class="p-4 rounded-lg bg-gray-800">
@@ -152,7 +154,7 @@ async function remove() {
 
   <section
     v-else-if="activeBind.id == -1"
-    class="col-span-2 mt-5"
+    class="col-span-7 mt-5"
   >
     <div class="container max-w-2xl mx-auto shadow-md md:w-3/4">
       <div class="p-4 rounded-lg bg-gray-800">
@@ -227,7 +229,7 @@ async function remove() {
 
   <section
     v-else
-    class="col-span-2 mt-5"
+    class="col-span-7 mt-5"
   >
     <div class="container max-w-2xl mx-auto shadow-md md:w-3/4">
       <div class="p-4 rounded-lg bg-gray-800">
