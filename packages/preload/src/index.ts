@@ -14,6 +14,7 @@ export {
   deleteBind,
   getKey,
   firstVisit,
+  isSLRunning
 } from './controller/BindManagerController';
 
 export {getStatistics} from './controller/ServersController';

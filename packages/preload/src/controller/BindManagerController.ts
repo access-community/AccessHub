@@ -2,6 +2,15 @@ import {ipcRenderer} from 'electron';
 import {readFileSync, writeFileSync, stat} from 'node:fs';
 import {Key} from '../enum/key';
 import {Command} from '../enum/command';
+import { exec } from 'child_process';
+
+export async function isSLRunning(){
+  return new Promise(function(resolve, reject){
+    exec("tasklist", function(err, stdout, stderr) {
+      resolve(stdout.toLowerCase().indexOf("scpsl.exe") > -1)
+    })
+  })
+}
 
 export async function readFile(path: string) {
   await ipcRenderer.invoke('setSettingValue', ['last_file', path]);
