@@ -1,7 +1,7 @@
 {
   "name": "AccessHub",
   "description": "Desktop application of Access Community",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "private": true,
   "license": "CC BY-NC-ND 4.0",
   "author": {
