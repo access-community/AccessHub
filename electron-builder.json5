@@ -1,0 +1,39 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "fr.access-community.hub",
+  "asar": true,
+  "productName": "Access Hub",
+  "icon": "buildResources/icon.ico",
+  "directories": {
+    "output": "release/${version}",
+    "buildResources": 'buildResources'
+  },
+  "files": [
+    "packages/**/dist/**"
+  ],
+  "win": {
+    "signDlls": true,
+    "forceCodeSigning": true,
+    "icon": "buildResources/icon.ico",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "artifactName": "${productName}-Windows-${version}-Setup.${ext}"
+  },
+  "nsis": {
+    "installerIcon": "buildResources/icon.ico",
+    "installerHeaderIcon": "buildResources/icon.ico",
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": true
+  }
+}
