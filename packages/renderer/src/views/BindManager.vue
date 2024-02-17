@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import Table from '/@/components/bindmanager/Table.vue';
 import Manager from '/@/components/bindmanager/Manager.vue';
-import {getBindData, firstVisit} from '#preload';
+import {getBindData, firstVisit, isSLRunning} from '#preload';
 import {useBindStore} from '/@/store/bind';
 import {ref} from 'vue';
 
 const alreadyVisited = ref(await firstVisit());
+const isGameRunning = ref(await isSLRunning());
 
 const bindStore = useBindStore();
 const {setData, setActive} = bindStore;
@@ -20,11 +21,47 @@ async function getData() {
 async function setVisited() {
   alreadyVisited.value = await firstVisit(true);
 }
+
+// Check if the game is running every 1 second
+setInterval(async function() {
+  isGameRunning.value = await isSLRunning()
+}, 1000)
+
 </script>
 
 <template>
   <div>
     <template v-if="alreadyVisited">
+
+      <template v-if="isGameRunning">
+        <div class="absolute w-full h-full z-50 bg-gray-900 bg-opacity-90">
+
+          <div
+            class="flex justify-center items-center xl:items-baseline"
+            style="height: calc(100vh - (96px + 24px))"
+          >
+            <div class="w-9/12 2xl:w-6/12 lg:mt-16 z-20 duration-75 text-white">
+              <h1 class="text-3xl font-extrabold">
+
+                <span class="block">
+                  <font-awesome-icon :icon="['fas', 'fa-circle-exclamation']" />
+                  Impossible de modifier <span class="text-indigo-500">les assignations</span>
+                </span>
+                <span class="block"> votre jeu est <span class="text-indigo-500">en cours d'exécution</span>.</span>
+              </h1>
+
+              <h1 class="text-2xl font-medium mt-5">
+                <span class="block">
+                  Pour modifier vos assignations, <span class="text-indigo-500">SCP:SL</span> doit être fermé.
+                </span>
+              </h1>
+
+            </div>
+          </div>
+
+        </div>
+      </template>
+
       <div
         v-if="!data.status"
         class="text-center"
