@@ -37,10 +37,10 @@ setInterval(async function() {
         <div class="absolute w-full h-full z-50 bg-gray-900 bg-opacity-90">
 
           <div
-            class="flex justify-center items-center xl:items-baseline"
+            class="flex justify-center items-center"
             style="height: calc(100vh - (96px + 24px))"
           >
-            <div class="w-9/12 2xl:w-6/12 lg:mt-16 z-20 duration-75 text-white">
+            <div class="z-20 duration-75 text-white">
               <h1 class="text-3xl font-extrabold">
 
                 <span class="block">
